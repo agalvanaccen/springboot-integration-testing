@@ -1,0 +1,81 @@
+package music.store.app.artist.presentation.rest;
+
+public class ArtistExamples {
+
+    public static final String ARTISTS_PAGE = """
+    {
+      "results": {
+        "items": [
+          {
+            "id": 1,
+            "name": "Kanye",
+            "lastName": "West"
+          },
+          {
+            "id": 3,
+            "name": "Kendrick",
+            "lastName": "Lamar"
+          },
+          {
+            "id": 2,
+            "name": "Mickael",
+            "lastName": "Jackson"
+          }
+        ],
+        "totalItems": 3,
+        "pageNumber": 1,
+        "totalPages": 1,
+        "isFirst": true,
+        "isLast": true,
+        "hasNext": false,
+        "hasPrevious": false
+      },
+      "timestamp": "2024-06-05T17:01:25.447167400Z"
+    }""";
+
+    public static final String ARTIST = """
+            {
+              "results": {
+                "id": 1,
+                "name": "Kanye",
+                "lastName": "West"
+              },
+              "timestamp": "2024-06-05T20:44:40.296698500Z"
+            }""";
+
+    public static final String ARTIST_NOT_FOUND = """
+            {
+              "errorMessage": "Artists with id: 10 does not exist",
+              "timestamp": "2024-06-05T20:45:32.281823800Z"
+            }""";
+
+    public static final String ARTIST_LIST = """
+            {
+              "results": [
+                {
+                  "id": 1,
+                  "name": "Kanye",
+                  "lastName": "West"
+                }
+              ],
+              "timestamp": "2024-06-05T20:46:28.199354Z"
+            }""";
+
+    public static final String ARTIST_REQUEST = """
+            {
+              "name": "Paris",
+              "lastName": "Jackson"
+            }""";
+
+    public static final String UPDATED_CREATED_ARTIST = """
+            {
+              "results": {
+                "id": 4,
+                "name": "Paris",
+                "lastName": "Jackson"
+              },
+              "timestamp": "2024-06-05T20:47:35.928588Z"
+            }""";
+
+    private ArtistExamples () {}
+}
