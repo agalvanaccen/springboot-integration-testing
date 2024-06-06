@@ -1,4 +1,4 @@
-package music.store.app.artist.presentation.rest;
+package music.store.app.artist.web.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -9,20 +9,17 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import music.store.app.artist.domain.Artist;
 import music.store.app.artist.domain.ArtistService;
-import music.store.app.artist.presentation.rest.models.ArtistRequest;
+import music.store.app.artist.web.rest.models.ArtistRequest;
 import music.store.app.common.exceptions.ResourceNotFoundException;
 import music.store.app.common.models.BaseResult;
 import music.store.app.common.models.PagedResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-import static music.store.app.artist.presentation.rest.ArtistExamples.*;
+import static music.store.app.artist.web.rest.ArtistExamples.*;
 import static music.store.app.common.RestConstants.APPLICATION_JSON;
 
 @RestController
@@ -60,27 +57,6 @@ public class ArtistController {
         return new BaseResult<>(artistService.getArtists(pageNo, pageSize));
     }
 
-    @GetMapping(value = "/search", produces = APPLICATION_JSON)
-    @Operation(
-            summary = "Returns a list of artists by name",
-            description = "This API allows to search artists by name",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "List of artists by name",
-                            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Artist.class)), examples = {
-                                    @ExampleObject(
-                                            name = "List of artists by name",
-                                            value = ARTIST_LIST
-                                    )
-                            })
-                    )
-            }
-    )
-    public BaseResult<List<Artist>> findByName(@RequestParam(name = "name", required = true) @NotEmpty String name) {
-        return new BaseResult<>(artistService.findByName(name));
-    }
-
     @PostMapping(consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
@@ -109,7 +85,7 @@ public class ArtistController {
                     )
             }
     )
-    public BaseResult<Artist> create(@Valid @NotNull @RequestBody ArtistRequest artistRequest) {
+    public BaseResult<Artist> create(@RequestBody @Valid ArtistRequest artistRequest) {
         var created = artistService.create(new Artist(null, artistRequest.name(), artistRequest.lastName()));
 
         return new BaseResult<>(created);
@@ -152,7 +128,7 @@ public class ArtistController {
                     )
             }
     )
-    public BaseResult<Artist> update(@PathVariable @NotNull Long id, @Valid @NotNull @RequestBody ArtistRequest artistRequest) throws ResourceNotFoundException {
+    public BaseResult<Artist> update(@PathVariable @NotNull Long id, @RequestBody @Valid ArtistRequest artistRequest) throws ResourceNotFoundException {
         var updated = artistService.update(id, artistRequest.name(), artistRequest.lastName());
 
         return new BaseResult<>(updated);

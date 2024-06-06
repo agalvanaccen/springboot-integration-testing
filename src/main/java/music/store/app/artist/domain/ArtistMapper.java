@@ -4,7 +4,7 @@ import music.store.app.common.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArtistMapper implements Mapper<ArtistEntity, Artist> {
+class ArtistMapper implements Mapper<ArtistEntity, Artist> {
 
     @Override
     public Artist toDTO(ArtistEntity entity) {

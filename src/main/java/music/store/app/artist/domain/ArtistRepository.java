@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ArtistRepository extends JpaRepository<ArtistEntity, Long> {
+interface ArtistRepository extends JpaRepository<ArtistEntity, Long> {
 
     @Query("""
             SELECT new music.store.app.artist.domain.Artist(a.id, a.name, a.lastname)
