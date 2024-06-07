@@ -14,8 +14,9 @@ import music.store.app.artist.domain.Artist;
 import music.store.app.artist.domain.ArtistService;
 import music.store.app.artist.web.rest.models.ArtistRequest;
 import music.store.app.common.exceptions.ResourceNotFoundException;
-import music.store.app.common.models.BaseResult;
-import music.store.app.common.models.PagedResult;
+import music.store.app.common.web.models.BaseErrorResult;
+import music.store.app.common.web.models.BaseResult;
+import music.store.app.common.web.models.PagedResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,6 +83,16 @@ public class ArtistController {
                                             value = UPDATED_CREATED_ARTIST
                                     )
                             })
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Invalid artists request",
+                            content = @Content(schema = @Schema(implementation = BaseErrorResult.class), examples = {
+                                    @ExampleObject(
+                                            name = "BAD_REQUEST",
+                                            value = ARTIST_BAD_REQUEST
+                                    )
+                            })
                     )
             }
     )
@@ -123,6 +134,16 @@ public class ArtistController {
                                     @ExampleObject(
                                             name = "Artist was not found",
                                             value = ARTIST_NOT_FOUND
+                                    )
+                            })
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Invalid artists request",
+                            content = @Content(schema = @Schema(implementation = BaseErrorResult.class), examples = {
+                                    @ExampleObject(
+                                            name = "BAD_REQUEST",
+                                            value = ARTIST_BAD_REQUEST
                                     )
                             })
                     )

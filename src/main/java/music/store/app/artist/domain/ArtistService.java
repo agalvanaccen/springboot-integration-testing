@@ -1,7 +1,7 @@
 package music.store.app.artist.domain;
 
 import music.store.app.common.exceptions.ResourceNotFoundException;
-import music.store.app.common.models.PagedResult;
+import music.store.app.common.web.models.PagedResult;
 
 public interface ArtistService {
 

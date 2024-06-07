@@ -1,4 +1,4 @@
-package music.store.app.common.models;
+package music.store.app.common.web.models;
 
 import org.springframework.data.domain.Page;
 

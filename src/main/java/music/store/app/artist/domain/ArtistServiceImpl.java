@@ -1,7 +1,7 @@
 package music.store.app.artist.domain;
 
 import music.store.app.common.exceptions.ResourceNotFoundException;
-import music.store.app.common.models.PagedResult;
+import music.store.app.common.web.models.PagedResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

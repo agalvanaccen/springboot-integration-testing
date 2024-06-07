@@ -45,8 +45,11 @@ public class ArtistExamples {
 
     public static final String ARTIST_NOT_FOUND = """
             {
-              "errorMessage": "Artists with id: 10 does not exist",
-              "timestamp": "2024-06-05T20:45:32.281823800Z"
+               "timestamp": "2024-06-07T17:15:00.526451200Z",
+               "error": {
+                 "type": "NOT_FOUND",
+                 "message": "Artists with id: 10 does not exist"
+               }
             }""";
 
     public static final String ARTIST_LIST = """
@@ -75,6 +78,25 @@ public class ArtistExamples {
                 "lastName": "Jackson"
               },
               "timestamp": "2024-06-05T20:47:35.928588Z"
+            }""";
+
+    public static final String ARTIST_BAD_REQUEST = """
+            {
+            	"timestamp": "2024-06-07T17:08:48.802482800Z",
+            	"error": {
+            		"type": "BAD_REQUEST",
+            		"message": "Invalid arguments have been provided",
+            		"details": [
+            			{
+            				"property": "name",
+            				"error": "Name is required"
+            			},
+            			{
+            				"property": "lastName",
+            				"error": "Last name is required"
+            			}
+            		]
+            	}
             }""";
 
     private ArtistExamples () {}
