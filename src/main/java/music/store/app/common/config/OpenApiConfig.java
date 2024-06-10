@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "Music store",
                 version = "1.0.0",
-                description = "This is a sample Spring Boot project intended to help people learning how to wite unit and integration tests",
+                description = "This is a sample Spring Boot project intended to help people learning how to write unit and integration tests",
                 termsOfService = "http://swagger.io/terms/",
                 license = @License(name = "Apache 2.0", url = "http://springdoc.org")
         )

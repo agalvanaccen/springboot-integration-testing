@@ -1,4 +1,4 @@
-package music.store.app.artist.web.rest;
+package music.store.app.artists.web.http.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -10,9 +10,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import music.store.app.artist.domain.Artist;
-import music.store.app.artist.domain.ArtistService;
-import music.store.app.artist.web.rest.models.ArtistRequest;
+import music.store.app.artists.models.Artist;
+import music.store.app.artists.domain.ArtistService;
+import music.store.app.artists.web.http.rest.models.ArtistRequest;
 import music.store.app.common.exceptions.ResourceNotFoundException;
 import music.store.app.common.web.models.BaseErrorResult;
 import music.store.app.common.web.models.BaseResult;
@@ -20,12 +20,12 @@ import music.store.app.common.web.models.PagedResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import static music.store.app.artist.web.rest.ArtistExamples.*;
+import static music.store.app.artists.web.http.rest.ArtistExamples.*;
 import static music.store.app.common.RestConstants.APPLICATION_JSON;
 
 @RestController
 @RequestMapping("/api/v1/artists")
-@Tag(name = "Artists", description = "Artists related resources")
+@Tag(name = "Artists", description = "Artists-related resources")
 public class ArtistController {
 
     private final ArtistService artistService;
@@ -209,7 +209,7 @@ public class ArtistController {
                     )
             }
     )
-    public BaseResult<Void> delete(@NotNull @PathVariable Long id) throws ResourceNotFoundException {
+    public BaseResult<Void> delete(@PathVariable @NotNull Long id) throws ResourceNotFoundException {
         artistService.delete(id);
         return new BaseResult<>(null);
     }

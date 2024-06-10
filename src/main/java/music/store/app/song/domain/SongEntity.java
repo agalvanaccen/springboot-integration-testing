@@ -3,7 +3,7 @@ package music.store.app.song.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import music.store.app.album.domain.AlbumEntity;
+import music.store.app.albums.domain.AlbumEntity;
 
 import java.sql.Time;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package music.store.app.artist.web.rest;
+package music.store.app.artists.web.http.rest;
 
 public class ArtistExamples {
 

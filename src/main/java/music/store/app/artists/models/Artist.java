@@ -1,3 +1,3 @@
-package music.store.app.artist.domain;
+package music.store.app.artists.models;
 
 public record Artist(Long id, String name, String lastName) {}

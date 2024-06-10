@@ -1,11 +1,12 @@
 package music.store.app.common.web.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseResult<T> extends AbstractBaseResult {
 
-    private final T results;
+    private T results;
+
+    public BaseResult() {
+        super();
+    }
 
     public BaseResult(T results) {
         super();

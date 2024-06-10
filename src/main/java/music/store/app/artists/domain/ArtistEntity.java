@@ -1,4 +1,4 @@
-package music.store.app.artist.domain;
+package music.store.app.artists.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

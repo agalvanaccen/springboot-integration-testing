@@ -4,22 +4,28 @@ import music.store.app.common.exceptions.ResourceNotFoundException;
 import music.store.app.common.web.models.ApiError;
 import music.store.app.common.web.models.BaseErrorResult;
 import music.store.app.common.web.models.ValidationError;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<BaseErrorResult> handleException(Exception ex) {
+        var error = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR.name(), ex.getMessage());
+
+        return new ResponseEntity<>(new BaseErrorResult(error), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<BaseErrorResult> handle(ResourceNotFoundException ex) {
+    public ResponseEntity<BaseErrorResult> handleResourceNotFound(ResourceNotFoundException ex) {
         var error = new ApiError(HttpStatus.NOT_FOUND.name(), ex.getMessage());
 
         return new ResponseEntity<>(new BaseErrorResult(error), HttpStatus.NOT_FOUND);

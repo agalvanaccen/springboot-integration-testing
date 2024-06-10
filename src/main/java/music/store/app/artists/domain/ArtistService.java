@@ -1,5 +1,6 @@
-package music.store.app.artist.domain;
+package music.store.app.artists.domain;
 
+import music.store.app.artists.models.Artist;
 import music.store.app.common.exceptions.ResourceNotFoundException;
 import music.store.app.common.web.models.PagedResult;
 

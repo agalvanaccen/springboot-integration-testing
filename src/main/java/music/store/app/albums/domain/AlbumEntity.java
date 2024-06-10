@@ -1,8 +1,8 @@
-package music.store.app.album.domain;
+package music.store.app.albums.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import music.store.app.artist.domain.ArtistEntity;
+import music.store.app.artists.domain.ArtistEntity;
 
 import java.time.Instant;
 
@@ -28,6 +28,18 @@ public class AlbumEntity {
     private ArtistEntity artist;
 
     public AlbumEntity() { }
+
+    public AlbumEntity(Long id, String title, String coverUrl) {
+        this.id = id;
+        this.title = title;
+        this.coverUrl = coverUrl;
+    }
+
+    public AlbumEntity(String title, String coverUrl, ArtistEntity artist) {
+        this.title = title;
+        this.coverUrl = coverUrl;
+        this.artist = artist;
+    }
 
     public Long getId() {
         return id;
