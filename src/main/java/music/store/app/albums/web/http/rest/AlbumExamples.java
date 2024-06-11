@@ -83,5 +83,22 @@ public class AlbumExamples {
               }
             }""";
 
-
+    public static final String CREATE_ALBUM_BAD_REQUEST = """
+            {
+              "timestamp": "2024-06-10T22:12:18.511863100Z",
+              "error": {
+                "type": "BAD_REQUEST",
+                "message": "Invalid arguments have been provided",
+                "details": [
+                  {
+                    "property": "artistId",
+                    "error": "Artist id is required"
+                  },
+                  {
+                    "property": "title",
+                    "error": "Title is required"
+                  }
+                ]
+              }
+            }""";
 }

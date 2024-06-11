@@ -7,6 +7,7 @@ import music.store.app.common.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 class AlbumServiceImpl implements AlbumService {
@@ -45,10 +46,10 @@ class AlbumServiceImpl implements AlbumService {
         var album = albumRepository.findById(command.id())
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(ALBUM_NOT_FOUND_MSG, command.id())));
 
-        album.setTitle(command.title());
-        album.setCoverUrl(command.coverUrl());
+        album.setTitle(Objects.requireNonNullElse(command.title(), album.getTitle()));
+        album.setCoverUrl(Objects.requireNonNullElse(command.coverUrl(), album.getCoverUrl()));
 
-        if (command.artistId() != null) {
+        if (command.artistId() != null ) {
             album.setArtist(artistRepository.getReferenceById(command.artistId()));
         }
 

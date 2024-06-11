@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
+public interface AlbumRepository extends JpaRepository<AlbumEntity, Long> {
 
     @Query("""
             SELECT

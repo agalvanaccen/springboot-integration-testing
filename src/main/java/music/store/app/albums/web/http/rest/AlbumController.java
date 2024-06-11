@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import music.store.app.albums.domain.AlbumMapper;
 import music.store.app.albums.domain.AlbumService;
@@ -20,6 +21,7 @@ import music.store.app.common.exceptions.ResourceNotFoundException;
 import music.store.app.common.web.models.BaseErrorResult;
 import music.store.app.common.web.models.BaseResult;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -115,10 +117,20 @@ public class AlbumController {
                                             value = CREATE_ALBUM_RESPONSE
                                     )
                             })
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Bad request",
+                            content = @Content(schema = @Schema(implementation = BaseErrorResult.class), examples = {
+                                    @ExampleObject(
+                                            name = "Bad request",
+                                            value = CREATE_ALBUM_BAD_REQUEST
+                                    )
+                            })
                     )
             }
     )
-    public BaseResult<Album> create(@RequestBody CreateAlbumRequest request) {
+    public BaseResult<Album> create(@RequestBody @Valid CreateAlbumRequest request) {
         var command = new SaveAlbumCommand(null, request.title(), request.coverUrl(), request.artistId());
 
         return new BaseResult<>(albumService.create(command));
@@ -161,7 +173,7 @@ public class AlbumController {
                     )
             }
     )
-    public BaseResult<Album> update(@PathVariable @Parameter(description = "Album's unique identifier", example = "1") @NotNull Long id, @RequestBody UpdateAlbumRequest request) throws ResourceNotFoundException {
+    public BaseResult<Album> update(@PathVariable @Parameter(description = "Album's unique identifier", example = "1") @NotNull Long id, @RequestBody @Validated UpdateAlbumRequest request) throws ResourceNotFoundException {
         var command = new SaveAlbumCommand(id, request.title(), request.coverUrl(), request.artistId());
 
         return new BaseResult<>(albumService.update(command));

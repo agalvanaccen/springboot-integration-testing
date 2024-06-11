@@ -5,12 +5,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import music.store.app.albums.domain.AlbumEntity;
 
-import java.sql.Time;
 import java.time.Instant;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "songs")
-public class SongEntity {
+class SongEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class SongEntity {
 
     @NotNull(message = "Duration is required")
     @Column(nullable = false)
-    private Time duration;
+    private LocalTime duration;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
@@ -32,6 +32,18 @@ public class SongEntity {
     private AlbumEntity album;
 
     public SongEntity() { }
+
+    public SongEntity(Long id, String title, LocalTime duration) {
+        this.id = id;
+        this.title = title;
+        this.duration = duration;
+    }
+
+    public SongEntity(String title, LocalTime duration, AlbumEntity album) {
+        this.title = title;
+        this.duration = duration;
+        this.album = album;
+    }
 
     public Long getId() {
         return id;
@@ -49,11 +61,11 @@ public class SongEntity {
         this.title = title;
     }
 
-    public @NotNull(message = "Duration is required") Time getDuration() {
+    public @NotNull(message = "Duration is required") LocalTime getDuration() {
         return duration;
     }
 
-    public void setDuration(@NotNull(message = "Duration is required") Time duration) {
+    public void setDuration(@NotNull(message = "Duration is required") LocalTime duration) {
         this.duration = duration;
     }
 
