@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS "songs";
+DROP TABLE IF EXISTS "albums";
+DROP TABLE IF EXISTS "artists";
+
 CREATE TABLE "artists" (
   "id" SERIAL PRIMARY KEY NOT NULL,
   "name" varchar NOT NULL,
