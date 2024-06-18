@@ -3,11 +3,13 @@ package music.store.app.albums.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import music.store.app.artists.domain.ArtistEntity;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.Instant;
 
 @Entity
 @Table(name = "albums")
+@DynamicUpdate
 public class AlbumEntity {
 
     @Id
@@ -24,7 +26,7 @@ public class AlbumEntity {
     private Instant createdAt = Instant.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artist_id")
+    @JoinColumn(name = "artist_id", nullable = false)
     private ArtistEntity artist;
 
     public AlbumEntity() { }

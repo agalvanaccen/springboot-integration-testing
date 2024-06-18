@@ -59,7 +59,7 @@ class SongServiceImpl implements SongService {
             song.setAlbum(albumRepository.getReferenceById(command.albumId()));
         }
 
-        return songMapper.toRecord(songRepository.save(song));
+        return songMapper.toRecord(songRepository.saveAndFlush(song));
     }
 
     @Override

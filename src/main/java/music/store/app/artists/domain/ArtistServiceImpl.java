@@ -47,7 +47,7 @@ class ArtistServiceImpl implements ArtistService {
         entity.setName(name);
         entity.setLastname(lastName);
 
-        return artistMapper.toRecord(artistRepository.save(entity));
+        return artistMapper.toRecord(artistRepository.saveAndFlush(entity));
     }
 
     @Override
