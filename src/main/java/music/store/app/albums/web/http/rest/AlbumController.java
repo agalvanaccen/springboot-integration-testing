@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import music.store.app.albums.domain.AlbumMapper;
 import music.store.app.albums.domain.AlbumService;
@@ -22,11 +21,27 @@ import music.store.app.common.web.models.BaseErrorResult;
 import music.store.app.common.web.models.BaseResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static music.store.app.albums.web.http.rest.AlbumExamples.*;
+import static music.store.app.albums.web.http.rest.AlbumExamples.ALBUMS_BY_ARTIST_ID;
+import static music.store.app.albums.web.http.rest.AlbumExamples.ALBUM_INFO;
+import static music.store.app.albums.web.http.rest.AlbumExamples.ALBUM_NOT_FOUND;
+import static music.store.app.albums.web.http.rest.AlbumExamples.CREATE_ALBUM_BAD_REQUEST;
+import static music.store.app.albums.web.http.rest.AlbumExamples.CREATE_ALBUM_REQUEST;
+import static music.store.app.albums.web.http.rest.AlbumExamples.CREATE_ALBUM_RESPONSE;
+import static music.store.app.albums.web.http.rest.AlbumExamples.UPDATE_ALBUM_REQUEST;
+import static music.store.app.albums.web.http.rest.AlbumExamples.UPDATE_ALBUM_RESPONSE;
 import static music.store.app.common.RestConstants.APPLICATION_JSON;
 
 @RestController
@@ -67,7 +82,7 @@ public class AlbumController {
                     )
             }
     )
-    public BaseResult<Album> findById(@PathVariable @NotNull @Parameter(description = "Album's unique identifier", example = "1") Long id) throws ResourceNotFoundException {
+    public BaseResult<Album> findById(@PathVariable(name = "id") @NotNull @Parameter(description = "Album's unique identifier", example = "1") Long id) throws ResourceNotFoundException {
         return new BaseResult<>(albumService.findById(id));
     }
 
@@ -130,7 +145,7 @@ public class AlbumController {
                     )
             }
     )
-    public BaseResult<Album> create(@RequestBody @Valid CreateAlbumRequest request) {
+    public BaseResult<Album> create(@RequestBody @Validated CreateAlbumRequest request) {
         var command = new SaveAlbumCommand(null, request.title(), request.coverUrl(), request.artistId());
 
         return new BaseResult<>(albumService.create(command));
@@ -173,7 +188,7 @@ public class AlbumController {
                     )
             }
     )
-    public BaseResult<Album> update(@PathVariable @Parameter(description = "Album's unique identifier", example = "1") @NotNull Long id, @RequestBody @Validated UpdateAlbumRequest request) throws ResourceNotFoundException {
+    public BaseResult<Album> update(@PathVariable(name = "id") @Parameter(description = "Album's unique identifier", example = "1") @NotNull Long id, @RequestBody @Validated UpdateAlbumRequest request) throws ResourceNotFoundException {
         var command = new SaveAlbumCommand(id, request.title(), request.coverUrl(), request.artistId());
 
         return new BaseResult<>(albumService.update(command));
@@ -202,7 +217,7 @@ public class AlbumController {
                     )
             }
     )
-    public BaseResult<Void> delete(@PathVariable @Parameter(description = "Album's unique identifier", example = "1") @NotNull Long id) throws ResourceNotFoundException {
+    public BaseResult<Void> delete(@PathVariable(name = "id") @Parameter(description = "Album's unique identifier", example = "1") @NotNull Long id) throws ResourceNotFoundException {
         albumService.delete(id);
         return new BaseResult<>();
     }

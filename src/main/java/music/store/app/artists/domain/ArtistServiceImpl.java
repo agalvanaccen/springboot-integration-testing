@@ -14,7 +14,7 @@ class ArtistServiceImpl implements ArtistService {
     private final ArtistRepository artistRepository;
     private final ArtistMapper artistMapper;
 
-    public static final String ARTIST_NOT_FOUND_MSG = "Artist with id: %s does not exist";
+    public static final String ARTIST_NOT_FOUND_MSG = "Artist with id: %d does not exist";
 
     ArtistServiceImpl(
             ArtistRepository artistRepository,
