@@ -27,3 +27,14 @@ in console or your editor/IDE.
 
 ## Exercises
 
+### Updating an existing Album
+
+1. Please write an integration test that validates the method `saveAndFlush` is working properly. Check an existing album data an edit it,
+then write assertions to validate that the updated Album's data matches with the actual values you provided to be updated.
+
+2. Write a test that validates that method `saveAndFlush` throws an exception when invalid data is provided, according to the database restrictions, album's title can't be null
+or empty and artist_id can't be null. Use criteria parameters:
+
+- Provide an empty title and a not null artist id, method should throw `ConstraintViolationException`
+- Provide a null title and a not null artist id, method should throw `DataIntegrityViolationException`
+- Provide a valid title and a null artist id, method should throw `DataIntegrityViolationException`
