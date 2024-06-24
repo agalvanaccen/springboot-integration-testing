@@ -61,10 +61,10 @@ class AlbumRepositoryTest {
 
     private static Stream<Arguments> createAlbumInvalidProvider() {
         return Stream.of(
-                Arguments.of(null, null, 1L, DataIntegrityViolationException.class),
+                Arguments.of(null, null, 1L, ConstraintViolationException.class),
                 Arguments.of("Donda", null, null, DataIntegrityViolationException.class),
                 Arguments.of("", null, 1L, ConstraintViolationException.class),
-                Arguments.of(null, null, null, DataIntegrityViolationException.class)
+                Arguments.of(null, null, null, ConstraintViolationException.class)
         );
     }
 }
