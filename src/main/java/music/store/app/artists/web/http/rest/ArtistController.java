@@ -18,6 +18,7 @@ import music.store.app.common.web.models.BaseErrorResult;
 import music.store.app.common.web.models.BaseResult;
 import music.store.app.common.web.models.PagedResult;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static music.store.app.artists.web.http.rest.ArtistExamples.*;
@@ -149,13 +150,13 @@ public class ArtistController {
                     )
             }
     )
-    public BaseResult<Artist> update(@PathVariable @NotNull Long id, @RequestBody @Valid ArtistRequest artistRequest) throws ResourceNotFoundException {
+    public BaseResult<Artist> update(@PathVariable(name = "id") @NotNull Long id, @RequestBody @Validated ArtistRequest artistRequest) throws ResourceNotFoundException {
         var updated = artistService.update(id, artistRequest.name(), artistRequest.lastName());
 
         return new BaseResult<>(updated);
     }
 
-    @GetMapping(value = "{id}", produces = APPLICATION_JSON)
+    @GetMapping(value = "/{id}", produces = APPLICATION_JSON)
     @Operation(
             summary = "Find artist by id",
             description = "This API allows to find an artists by its id",
@@ -182,11 +183,11 @@ public class ArtistController {
                     )
             }
     )
-    public BaseResult<Artist> findBydId(@PathVariable @NotNull Long id) throws ResourceNotFoundException {
+    public BaseResult<Artist> findBydId(@PathVariable(name = "id") @NotNull Long id) throws ResourceNotFoundException {
         return new BaseResult<>(artistService.findById(id));
     }
 
-    @DeleteMapping(value = "{id}", produces = APPLICATION_JSON)
+    @DeleteMapping(value = "/{id}", produces = APPLICATION_JSON)
     @ResponseStatus(HttpStatus.ACCEPTED)
     @Operation(
             summary = "Delete artist data",
@@ -209,7 +210,7 @@ public class ArtistController {
                     )
             }
     )
-    public BaseResult<Void> delete(@PathVariable @NotNull Long id) throws ResourceNotFoundException {
+    public BaseResult<Void> delete(@PathVariable(name = "id") @NotNull Long id) throws ResourceNotFoundException {
         artistService.delete(id);
         return new BaseResult<>(null);
     }

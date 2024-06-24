@@ -28,7 +28,7 @@ class SongEntity {
     private Instant createdAt = Instant.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "album_id")
+    @JoinColumn(name = "album_id", nullable = false)
     private AlbumEntity album;
 
     public SongEntity() { }

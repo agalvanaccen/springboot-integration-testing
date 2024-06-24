@@ -73,7 +73,7 @@ public class SongController {
                     )
             }
     )
-    public BaseResult<SongDTO> findById(@PathVariable @Parameter(description = "Song's unique identifier", example = "1" ) @NotNull Long id) throws ResourceNotFoundException {
+    public BaseResult<SongDTO> findById(@PathVariable(name = "id") @Parameter(description = "Song's unique identifier", example = "1" ) @NotNull Long id) throws ResourceNotFoundException {
         var song = songService.findById(id);
         return new BaseResult<>(songDTOMapper.toDTO(song));
     }
@@ -186,7 +186,7 @@ public class SongController {
                     )
             }
     )
-    public BaseResult<SongDTO> update(@PathVariable @NotNull Long id, @RequestBody @Validated UpdateSongRequest request) throws ResourceNotFoundException {
+    public BaseResult<SongDTO> update(@PathVariable(name = "id") @NotNull Long id, @RequestBody @Validated UpdateSongRequest request) throws ResourceNotFoundException {
         var command = new SaveSongCommand(id, request.title(), LocalTime.parse(request.duration()), request.albumId());
         var updatedSong = songService.update(command);
 
@@ -216,7 +216,7 @@ public class SongController {
                     )
             }
     )
-    public BaseResult<Void> delete(@PathVariable @Parameter(description = "Song's unique identifier", example = "1") @NotNull Long id) throws ResourceNotFoundException {
+    public BaseResult<Void> delete(@PathVariable(name = "id") @Parameter(description = "Song's unique identifier", example = "1") @NotNull Long id) throws ResourceNotFoundException {
         songService.delete(id);
         return new BaseResult<>();
     }

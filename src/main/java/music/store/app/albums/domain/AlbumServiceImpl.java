@@ -53,7 +53,7 @@ class AlbumServiceImpl implements AlbumService {
             album.setArtist(artistRepository.getReferenceById(command.artistId()));
         }
 
-        return albumMapper.toRecord(album);
+        return albumMapper.toRecord(albumRepository.saveAndFlush(album));
     }
 
     @Override
