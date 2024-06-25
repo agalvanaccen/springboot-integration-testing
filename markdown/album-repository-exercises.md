@@ -29,12 +29,29 @@ in console or your editor/IDE.
 
 ### Updating an existing Album
 
-1. Please write an integration test that validates the method `saveAndFlush` is working properly. Check an existing album data an edit it,
-then write assertions to validate that the updated Album's data matches with the actual values you provided to be updated.
+1. Write a test to validate the method `saveAndFlush` is working properly, then write assertions to validate that:
 
-2. Write a test that validates that method `saveAndFlush` throws an exception when invalid data is provided, according to the database restrictions, album's title can't be null
-or empty and artist_id can't be null. Use criteria parameters:
+- The updated data matches with the recently updated album
 
-- Provide an empty title and a not null artist id, method should throw `ConstraintViolationException`
-- Provide a null title and a not null artist id, method should throw `DataIntegrityViolationException`
-- Provide a valid title and a null artist id, method should throw `DataIntegrityViolationException`
+2. Write a test to validate the method `saveAndFlush` throws an exception when invalid data is provided, write assertions to validate that:
+
+- Given an **empty title** and a **not null artist id**, method should throw `ConstraintViolationException`
+- Given a **null title** and a **not null artist id**, method should throw `DataIntegrityViolationException`
+- Given a **not empty title** and a **null artist id**, method should throw `DataIntegrityViolationException`
+
+### Get albums by artist id
+
+1. Write a test to validate the method `findByArtist` is returning a list of albums, then write assertions to validate that:
+
+- The returned list is not null
+- The returned list is not empty
+- Get the first element of the list and validate is not null
+
+### Delete an existing album
+
+1. Write a test to validate the method `delete(album)` works properly
+
+- Find the album by id
+- Delete the album
+- Then find the album by id again
+- Finally write an assertion to validate the returned album by the method `findById` is empty
