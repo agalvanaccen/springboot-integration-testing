@@ -80,6 +80,6 @@ Below you'll find a list of explanations and proposed exercises, please follow t
 > for the suggested exercises, you can use this branch to compare it with your tests in case you get stuck but ideally you should try to solve the exercise by your own
 > by making google searches and investigating so you can really develop an understanding of the subject.
 
-1. [Testing `AlbumRepository`](markdown/album-repository-exercises#testing-albumrepository)
+1. [Testing `AlbumRepository`](markdown/album-repository-exercises.md#testing-albumrepository)
 2. [Testing `ArtistRepository`](markdown/artist-repository-exercises.md#testing-artistrepository)
-3. [Testing `SongRepository`](markdown/song-repository-exercises#testing-songrepository)
+3. [Testing `SongRepository`](markdown/song-repository-exercises.md#testing-songrepository)
