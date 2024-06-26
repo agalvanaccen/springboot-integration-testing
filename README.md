@@ -56,7 +56,7 @@ you can get the lists of artists:
 
 ![Response](./markdown/imgs/get-artists-response.png "Response")
 
-## About integration testing
+## 5. About integration testing
 
 Integration Testing is a form of testing focused in testing interactions between internal and external components, but not as a whole
 system or flow. Some examples of external components are databases, external services, files, etc. Unlike unit tests, integration tests
@@ -68,7 +68,7 @@ order to interact with the external components. They're slow and takes more time
 In this demo project will be focusing on writing integration tests to test the persistence layer (repositories) and presentation
 layer (controllers).
 
-## Instructions
+## 6. Instructions
 
 As mentioned before, we'll focus on testing persistence and presentation layers. To write and execute the tests, we'll make use
 of a library called [JUnit](https://www.baeldung.com/junit-5) and we'll use an assertion library called [AssertJ](https://www.baeldung.com/introduction-to-assertj), 
@@ -77,9 +77,39 @@ Below you'll find a list of explanations and proposed exercises, please follow t
 > 💡 **IMPORTANT**
 > 
 > We'll be working on the `main` branch but if you take a look, there's another branch called `ending_branch` this branch contains more implementation examples
-> for the suggested exercises, you can use this branch to compare it with your tests in case you get stuck but ideally you should try to solve the exercise by your own
+> for the suggested exercises, you can use this branch to compare it with your tests in case you get stuck, but ideally you should try to solve the exercises by your own
 > by making google searches and investigating so you can really develop an understanding of the subject.
+
+### Exercises
+
+#### Testing persistence layer
 
 1. [Testing `AlbumRepository`](markdown/album-repository-exercises.md#testing-albumrepository)
 2. [Testing `ArtistRepository`](markdown/artist-repository-exercises.md#testing-artistrepository)
 3. [Testing `SongRepository`](markdown/song-repository-exercises.md#testing-songrepository)
+
+#### Testing persistence layer
+
+1. [Testing `ArtistController`](markdown/artist-controller-exercises.md#testing-artistcontroller)
+2. Testing `AlbumnController` - [same instructions as `ArtistController`](markdown/artist-controller-exercises.md#testing-artistcontroller)
+3. Testing `SongController` - [same instructions as `ArtistController`](markdown/artist-controller-exercises.md#testing-artistcontroller)
+
+## 7. Resources
+
+### Official Language/Framework/Library Documentation
+
+- [Testing Spring Boot Applications](https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html)
+- [Testing the Web layer](https://spring.io/guides/gs/testing-web)
+- [`@DataJpaTest` annotation](https://docs.spring.io/spring-boot/api/java/org/springframework/boot/test/autoconfigure/orm/jpa/DataJpaTest.html)
+
+### Blog articles, samples
+
+- [`@SpringBootTest` annotation](https://howtodoinjava.com/spring-boot2/testing/springboottest-annotation/)
+- [Spring Boot Integration Testing](https://www.arhohuttunen.com/spring-boot-integration-testing/)
+- [Spring Boot `@DataJpaTest`](https://zetcode.com/springboot/datajpatest/)
+
+### Video tutorials
+
+- [Spring Boot Testing](https://www.youtube.com/watch?v=rUbjV3VY1DI)
+- [How to Integration Test In Spring Boot](https://www.youtube.com/watch?v=7QCzBwplNIk)
+- [Spring Boot Testcontainers - Integration Testing made easy!](https://www.youtube.com/watch?v=erp-7MCK5BU&t=1768s)

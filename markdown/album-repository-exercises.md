@@ -35,9 +35,9 @@ in console or your editor/IDE.
 
 2. Write a test to validate the method `saveAndFlush` throws an exception when invalid data is provided, write assertions to validate that:
 
-- Given an **empty title** and a **not null artist id**, method should throw `ConstraintViolationException`
-- Given a **null title** and a **not null artist id**, method should throw `DataIntegrityViolationException`
-- Given a **not empty title** and a **null artist id**, method should throw `DataIntegrityViolationException`
+- Given an **empty title** and a **not null artist id**, when method `saveAndFlush` is called should throw `ConstraintViolationException`
+- Given a **null title** and a **not null artist id**, when method `saveAndFlush` is called should throw `DataIntegrityViolationException`
+- Given a **not empty title** and a **null artist id**, when method `saveAndFlush` is called should throw `DataIntegrityViolationException`
 
 ### Get albums by artist id
 
