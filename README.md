@@ -23,7 +23,7 @@ It uses an in-memory database called H2, so you'll find pre-existing data exampl
 ### Database schema
 ![Database Schema](./markdown/imgs/music-store.png "Music store database")
 
-### 3. Environment prerequisites
+## 3. Environment prerequisites
 
 1. Install [JDK 21](https://adoptium.net/temurin/releases/)
 
